@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Horizontal List in ListView'),
+        ),
+        body: ListView.builder(
+          itemCount: 4, // Number of sections
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0) {
+              // First section
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Home', // Section name for the first section
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    height: 200, // Height of each section
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3, // Number of items in the home section
+                      itemBuilder: (BuildContext context, int itemIndex) {
+                        // Sample data for images and text
+                        return Container(
+                          width: 160, // Width of each item
+                          margin: EdgeInsets.symmetric(horizontal: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://via.placeholder.com/150', // Sample image URL
+                                  height: 120,
+                                  width: 160,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Item $itemIndex', // Sample text
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              // Other sections
+              String sectionName;
+              if (index == 1) {
+                sectionName = 'Programs for You';
+              } else if (index == 2) {
+                sectionName = 'Events for You';
+              } else {
+                sectionName = 'Lessons for You';
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      sectionName,
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    height: 200, // Height of each section
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10, // Number of items in each section
+                      itemBuilder: (BuildContext context, int itemIndex) {
+                        // Sample data for images and text
+                        return Container(
+                          width: 160, // Width of each item
+                          margin: EdgeInsets.symmetric(horizontal: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://via.placeholder.com/150', // Sample image URL
+                                  height: 120,
+                                  width: 160,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Item $itemIndex', // Sample text
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
